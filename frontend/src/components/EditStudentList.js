@@ -23,7 +23,7 @@ const EditStudentList = ({ updateStudentList }) => {
     e.preventDefault();
 
     axios
-      .put(`${process.env.REACT_APP_URI}/update`, updatedList)
+      .put(`${process.env.REACT_APP_URI}update`, updatedList)
       .then(() => {
         toast.success("Student List Updated Successfully");
         navigate("/students");
