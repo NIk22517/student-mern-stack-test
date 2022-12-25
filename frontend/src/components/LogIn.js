@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 
-const LogIn = ({ setAdmin,setLoading,loading }) => {
+const LogIn = ({ setAdmin, setLoading, loading }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -73,5 +73,11 @@ const LogInStyled = styled.form`
   input {
     margin-block: 0.5rem;
     padding: 0.5rem 1rem;
+  }
+  input[type="submit"] {
+    border: none;
+    background-color: blue;
+    padding: 0.5rem 1rem;
+    color: white;
   }
 `;
