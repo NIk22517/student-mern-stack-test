@@ -13,7 +13,7 @@ const LogIn = ({ setAdmin }) => {
     e.preventDefault();
 
     axios
-      .post(`${process.env.REACT_APP_URI}auth/login`, user)
+      .post(`${process.env.REACT_APP_URI}/auth/login`, user)
       .then((data) => {
         setAdmin(data.data.email);
         navigate("/students");
