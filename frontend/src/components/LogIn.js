@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Loader from "./Loader";
 
 const LogIn = ({ setAdmin }) => {
   const navigate = useNavigate();
@@ -54,7 +55,9 @@ const LogIn = ({ setAdmin }) => {
         onChange={handleChange}
         required
       />
-      <input type={"submit"} onClick={clickHandle} value={loading} />
+      <input type={"submit"} onClick={clickHandle} />
+
+      {loading ? <Loader /> : ""}
     </LogInStyled>
   );
 };
