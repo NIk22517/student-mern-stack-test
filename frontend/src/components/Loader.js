@@ -12,6 +12,10 @@ const Loader = () => {
 export default Loader;
 
 const Loading = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   height: 100%;
   display: flex;
   align-items: center;
