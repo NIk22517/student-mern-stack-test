@@ -5,6 +5,7 @@ import axios from "axios";
 
 const LogIn = ({ setAdmin }) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -15,6 +16,7 @@ const LogIn = ({ setAdmin }) => {
     axios
       .post(`${process.env.REACT_APP_URI}/auth/login`, user)
       .then((data) => {
+        setLoading(false);
         setAdmin(data.data.email);
         navigate("/students");
       })
@@ -29,6 +31,10 @@ const LogIn = ({ setAdmin }) => {
       ...user,
       [name]: value,
     });
+  };
+
+  const clickHandle = () => {
+    setLoading(true);
   };
   return (
     <LogInStyled action='' method='' onSubmit={handleSubmit}>
@@ -48,7 +54,7 @@ const LogIn = ({ setAdmin }) => {
         onChange={handleChange}
         required
       />
-      <input type={"submit"} />
+      <input type={"submit"} onClick={clickHandle} value={loading} />
     </LogInStyled>
   );
 };
