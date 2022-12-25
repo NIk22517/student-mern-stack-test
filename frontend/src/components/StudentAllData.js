@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Loader from "./Loader";
 
 const StudentAllData = ({ setUpdateStudentList }) => {
   const [studentList, setStudentList] = useState([]);
@@ -88,6 +89,7 @@ const StudentAllData = ({ setUpdateStudentList }) => {
           })}
         </tbody>
       </TableStyle>
+      {studentList.length === 0 ? <Loader /> : ""}
     </MainStyle>
   );
 };
