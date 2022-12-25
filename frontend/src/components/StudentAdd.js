@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Loader from "./Loader";
 
 const StudentAdd = ({ setLoading, loading }) => {
   const [studentDetail, setStudentDetail] = useState({
@@ -107,6 +108,7 @@ const StudentAdd = ({ setLoading, loading }) => {
           onChange={handleChange}
         />
         <input type={"submit"} value='Add' onClick={clickHandle} />
+        {loading ? <Loader /> : ""}
       </AddForm>
     </>
   );
