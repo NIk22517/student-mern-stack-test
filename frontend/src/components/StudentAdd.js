@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const StudentAdd = () => {
+const StudentAdd = ({ setLoading, loading }) => {
   const [studentDetail, setStudentDetail] = useState({
     name: "",
     age: "",
@@ -24,6 +24,7 @@ const StudentAdd = () => {
     axios
       .post(`${process.env.REACT_APP_URI}/add`, studentDetail)
       .then(() => {
+        setLoading(false);
         toast.success("Student Added Successfully");
         navigate("/students");
       })
@@ -39,6 +40,9 @@ const StudentAdd = () => {
       [name]: value,
     });
   }
+  const clickHandle = () => {
+    setLoading(true);
+  };
   return (
     <>
       <header style={{ paddingInline: "5rem" }}>
@@ -102,7 +106,7 @@ const StudentAdd = () => {
           value={studentDetail.address}
           onChange={handleChange}
         />
-        <input type={"submit"} value='Add' />
+        <input type={"submit"} value='Add' onClick={clickHandle} />
       </AddForm>
     </>
   );

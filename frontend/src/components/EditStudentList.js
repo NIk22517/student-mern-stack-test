@@ -3,8 +3,9 @@ import axios from "axios";
 import styled from "styled-components";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
-const EditStudentList = ({ updateStudentList }) => {
+const EditStudentList = ({ updateStudentList, setLoading, loading }) => {
   const [updatedList, setUpdatedList] = useState({
     id: updateStudentList._id,
     name: updateStudentList.name,
@@ -25,6 +26,7 @@ const EditStudentList = ({ updateStudentList }) => {
     axios
       .put(`${process.env.REACT_APP_URI}/update`, updatedList)
       .then(() => {
+        setLoading(false);
         toast.success("Student List Updated Successfully");
         navigate("/students");
       })
@@ -38,6 +40,10 @@ const EditStudentList = ({ updateStudentList }) => {
       ...updatedList,
       [name]: value,
     });
+  };
+
+  const clickHandle = () => {
+    setLoading(true);
   };
 
   return (
@@ -102,7 +108,8 @@ const EditStudentList = ({ updateStudentList }) => {
           value={updatedList.address}
           onChange={handleChange}
         />
-        <input type={"submit"} value='Update' />
+        <input type={"submit"} value='Update' onClick={clickHandle} />
+        {loading ? <Loader /> : ""}
       </EditForm>
     </>
   );

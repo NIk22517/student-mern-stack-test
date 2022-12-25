@@ -11,6 +11,7 @@ import { useState } from "react";
 
 function App() {
   const [updateStudentList, setUpdateStudentList] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [admin, setAdmin] = useState("Log-In");
 
   return (
@@ -20,7 +21,13 @@ function App() {
         <Route
           exact
           path='/auth/login'
-          element={<LogIn setAdmin={setAdmin} />}
+          element={
+            <LogIn
+              setAdmin={setAdmin}
+              setLoading={setLoading}
+              loading={loading}
+            />
+          }
         />
         <Route
           exact
@@ -29,11 +36,21 @@ function App() {
             <StudentAllData setUpdateStudentList={setUpdateStudentList} />
           }
         />
-        <Route exact path='/student/add' element={<StudentAdd />} />
+        <Route
+          exact
+          path='/student/add'
+          element={<StudentAdd setLoading={setLoading} loading={loading} />}
+        />
         <Route
           exact
           path='/update'
-          element={<EditStudentList updateStudentList={updateStudentList} />}
+          element={
+            <EditStudentList
+              updateStudentList={updateStudentList}
+              setLoading={setLoading}
+              loading={loading}
+            />
+          }
         />
       </Routes>
       <Toaster />

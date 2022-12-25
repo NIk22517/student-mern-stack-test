@@ -4,9 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "./Loader";
 
-const LogIn = ({ setAdmin }) => {
+const LogIn = ({ setAdmin,setLoading,loading }) => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
